@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.PrintWriter;
 import java.util.Map;
 import java.util.Set;
@@ -27,21 +28,23 @@ public class EmotionServer extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        //EmotionDict dict = new EmotionDict();
-        //dict.loadDictFromProp("emotiondict.properties");
+        EmotionDict dict = new EmotionDict();
+        InputStream is = getClass().getResourceAsStream("/emotiondict.properties");
+        dict.loadDictFromPropStream(is);
+        is.close();
         //this.getClass().getResource("emotiondict.properties").toString();
 
         //IAnalyzer analyzer = new Analyzer();
         //analyzer.setEmotionDict(dict);
 
-        File f = new File("emotiondict.properties");
+        //File f = new File("emotiondict.properties");
 
         PrintWriter w = response.getWriter();
 
         Map<String, String> envs = System.getenv();
 
         //w.write("test!\n");
-        //w.write(dict.getWordsString().size() + "words loaded!");
+        w.write(dict.getWordsString().size() + "words loaded!");
         for(Map.Entry<String, String> e : envs.entrySet()){
             w.write(e.getKey() + ":" + e.getValue() + "\n");
         }
