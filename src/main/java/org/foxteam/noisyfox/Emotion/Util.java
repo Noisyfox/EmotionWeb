@@ -22,15 +22,22 @@ public final class Util {
 
         Matcher m = EnvPattern.matcher(input);
 
-        StringBuffer sb = new StringBuffer();
+        StringBuilder sb = new StringBuilder();
         boolean result = m.find();
+        int start = 0, end;
         while(result) {
             String envKey = m.group(1);
             String envValue = System.getenv(envKey);
-            m.appendReplacement(sb, String.valueOf(envValue));
+            //由于 matcher.appendReplacement 会对输入进行转义，因此这里用自己的替换
+            //m.appendReplacement(sb, String.valueOf(envValue));
+            end = m.start();
+            sb.append(input, start, end);
+            sb.append(String.valueOf(envValue));
+            start = m.end();
             result = m.find();
         }
-        m.appendTail(sb);
+        //m.appendTail(sb);
+        sb.append(input, start, input.length());
 
         return sb.toString();
     }

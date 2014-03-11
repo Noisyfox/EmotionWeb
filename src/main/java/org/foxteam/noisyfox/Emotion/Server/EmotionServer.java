@@ -40,7 +40,7 @@ public class EmotionServer extends HttpServlet {
         Map<String, String> envs = System.getenv();
 
         //w.write("test!\n");
-        w.write(dict.getWordsString().size() + "words loaded!");
+        w.write(dict.getWordsString().size() + "words loaded!\n");
         for(Map.Entry<String, String> e : envs.entrySet()){
             w.write(e.getKey() + ":" + e.getValue() + "\n");
         }
