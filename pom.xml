@@ -77,24 +77,19 @@
             <version>2.11.4</version>
         </dependency>
         <dependency>
-            <groupId>yzwduck</groupId>
-            <artifactId>wbgrab-common</artifactId>
-            <version>1.0</version>
-        </dependency>
-        <dependency>
             <groupId>org.foxteam.noisyfox</groupId>
-            <artifactId>emotion-core</artifactId>
-            <version>1.0</version>
-        </dependency>
-        <dependency>
-            <groupId>org.foxteam.noisyfox</groupId>
-            <artifactId>emotion-processor</artifactId>
+            <artifactId>foxanalyzer</artifactId>
             <version>1.0</version>
         </dependency>
         <dependency>
             <groupId>org.apache.tomcat</groupId>
             <artifactId>tomcat-servlet-api</artifactId>
             <version>7.0.37</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.lucene</groupId>
+            <artifactId>lucene-core</artifactId>
+            <version>4.2.1</version>
         </dependency>
     </dependencies>
     <profiles>
