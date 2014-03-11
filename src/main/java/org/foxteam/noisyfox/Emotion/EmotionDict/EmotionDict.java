@@ -3,6 +3,7 @@ package org.foxteam.noisyfox.Emotion.EmotionDict;
 import org.foxteam.noisyfox.Emotion.Core.Emotion;
 import org.foxteam.noisyfox.Emotion.Core.IDict;
 import org.foxteam.noisyfox.Emotion.Core.Word;
+import org.foxteam.noisyfox.Emotion.Util;
 
 import java.io.*;
 import java.util.*;
@@ -57,12 +58,12 @@ public class EmotionDict implements IDict {
         Properties prop = new Properties();
         prop.load(in);
 
-        mProp_dictEncode = prop.getProperty(PROP_KEY_ENCODE, mProp_dictEncode);
-        mProp_commonDict_path = prop.getProperty(PROP_KEY_COMMONDICT_PATH, mProp_commonDict_path);
-        mProp_commonDict_model_path = prop.getProperty(PROP_KEY_COMMONDICT_MODEL_PATH, mProp_commonDict_model_path);
-        mProp_commonDict_model_autoSave = prop.getProperty(PROP_KEY_COMMONDICT_MODEL_AUTOSAVE, mProp_commonDict_model_autoSave ? "1" : "0").equals("1");
-        mProp_commonDict_model_autoRefresh = prop.getProperty(PROP_KEY_COMMONDICT_MODEL_AUTOREFRESH, mProp_commonDict_model_autoRefresh ? "1" : "0").equals("1");
-        mProp_emotionDict_path = prop.getProperty(PROP_KEY_EMOTIONDICT_PATH, mProp_emotionDict_path);
+        mProp_dictEncode = Util.replaceEnv(prop.getProperty(PROP_KEY_ENCODE, mProp_dictEncode));
+        mProp_commonDict_path = Util.replaceEnv(prop.getProperty(PROP_KEY_COMMONDICT_PATH, mProp_commonDict_path));
+        mProp_commonDict_model_path = Util.replaceEnv(prop.getProperty(PROP_KEY_COMMONDICT_MODEL_PATH, mProp_commonDict_model_path));
+        mProp_commonDict_model_autoSave = ("1".equals(Util.replaceEnv(prop.getProperty(PROP_KEY_COMMONDICT_MODEL_AUTOSAVE, mProp_commonDict_model_autoSave ? "1" : "0"))));
+        mProp_commonDict_model_autoRefresh = ("1".equals(Util.replaceEnv(prop.getProperty(PROP_KEY_COMMONDICT_MODEL_AUTOREFRESH, mProp_commonDict_model_autoRefresh ? "1" : "0"))));
+        mProp_emotionDict_path = Util.replaceEnv(prop.getProperty(PROP_KEY_EMOTIONDICT_PATH, mProp_emotionDict_path));
 
         loadDict(mProp_commonDict_path, mProp_commonDict_model_path);
         loadEmotionDict(mProp_emotionDict_path);

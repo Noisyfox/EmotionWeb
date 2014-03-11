@@ -5,6 +5,7 @@ import java.util.regex.Pattern;
 
 /**
  * Created by Noisyfox on 14-3-11.
+ * 工具类
  */
 public final class Util {
 
@@ -13,10 +14,12 @@ public final class Util {
     /**
      * 将输入字符串中以 {$ } 包围的字符串替换为对应的环境变量的值。
      * 如果不存在相应的环境变量则用 "null" 代替
-     * @param input
-     * @return
+     * @param input 待转换的字符串
+     * @return 转换后的字符串
      */
     public static String replaceEnv(String input){
+        if(input == null)return null;
+
         Matcher m = EnvPattern.matcher(input);
 
         StringBuffer sb = new StringBuffer();
