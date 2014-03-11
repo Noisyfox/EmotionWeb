@@ -54,7 +54,7 @@ public class EmotionDict implements IDict {
         is.close();
     }
 
-    private void loadDictFromPropStream(InputStream in) throws IOException {
+    public void loadDictFromPropStream(InputStream in) throws IOException {
         Properties prop = new Properties();
         prop.load(in);
 
